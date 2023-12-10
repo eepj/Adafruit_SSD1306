@@ -25,15 +25,15 @@
 #define _Adafruit_SSD1306_H_
 
 // ONE of the following three lines must be #defined:
-//#define SSD1306_128_64 ///< DEPRECTAED: old way to specify 128x64 screen
+// #define SSD1306_128_64 ///< DEPRECTAED: old way to specify 128x64 screen
 #define SSD1306_128_32 ///< DEPRECATED: old way to specify 128x32 screen
-//#define SSD1306_96_16  ///< DEPRECATED: old way to specify 96x16 screen
-// This establishes the screen dimensions in old Adafruit_SSD1306 sketches
-// (NEW CODE SHOULD IGNORE THIS, USE THE CONSTRUCTORS THAT ACCEPT WIDTH
-// AND HEIGHT ARGUMENTS).
+// #define SSD1306_96_16  ///< DEPRECATED: old way to specify 96x16 screen
+//  This establishes the screen dimensions in old Adafruit_SSD1306 sketches
+//  (NEW CODE SHOULD IGNORE THIS, USE THE CONSTRUCTORS THAT ACCEPT WIDTH
+//  AND HEIGHT ARGUMENTS).
 
 // Uncomment to disable Adafruit splash logo
-//#define SSD1306_NO_SPLASH
+// #define SSD1306_NO_SPLASH
 
 #if defined(ARDUINO_STM32_FEATHER)
 typedef class HardwareSPI SPIClass;
@@ -51,7 +51,7 @@ typedef uint8_t PortMask;
 typedef volatile RwReg PortReg;
 typedef uint32_t PortMask;
 #define HAVE_PORTREG
-#elif (defined(__arm__) || defined(ARDUINO_FEATHER52)) &&                      \
+#elif (defined(__arm__) || defined(ARDUINO_FEATHER52)) && \
     !defined(ARDUINO_ARCH_MBED) && !defined(ARDUINO_ARCH_RP2040)
 typedef volatile uint32_t PortReg;
 typedef uint32_t PortMask;
@@ -122,11 +122,16 @@ typedef uint32_t PortMask;
 #define SSD1306_LCDHEIGHT 16 ///< DEPRECATED: height w/SSD1306_96_16 defined
 #endif
 
+#define SSD1307_SET_COM_PINS_HARDWARE_CONFIG 0xDA
+#define SSD1307_SET_COM_SEG_AND_LR_SWAP 0x12
+#define SSD1307_SET_REMAP_COL0 0xA0
+
 /*!
     @brief  Class that stores state and functions for interacting with
             SSD1306 OLED displays.
 */
-class Adafruit_SSD1306 : public Adafruit_GFX {
+class Adafruit_SSD1306 : public Adafruit_GFX
+{
 public:
   // NEW CONSTRUCTORS -- recommended for new projects
   Adafruit_SSD1306(uint8_t w, uint8_t h, TwoWire *twi = &Wire,
@@ -184,7 +189,7 @@ protected:
   int8_t clkPin;   ///< (Clock Pin) set when using SPI set during construction.
   int8_t dcPin;    ///< (Data Pin) set when using SPI set during construction.
   int8_t
-      csPin; ///< (Chip Select Pin) set when using SPI set during construction.
+      csPin;     ///< (Chip Select Pin) set when using SPI set during construction.
   int8_t rstPin; ///< Display reset pin assignment. Set during construction.
 
 #ifdef HAVE_PORTREG
