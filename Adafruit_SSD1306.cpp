@@ -39,7 +39,7 @@
 #ifdef __AVR__
 #include <avr/pgmspace.h>
 #elif defined(ESP8266) || defined(ESP32) || defined(ARDUINO_ARCH_RP2040)
-#include <pgmspace.h>
+// #include <pgmspace.h>
 #else
 #define pgm_read_byte(addr) \
   (*(const unsigned char *)(addr)) ///< PROGMEM workaround for non-AVR
